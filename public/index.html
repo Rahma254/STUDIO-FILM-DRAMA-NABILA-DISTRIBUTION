@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nabila Ahmad Studio - AI Film, Animasi, & Content Generator</title>
+    
+    <!-- Super SEO Meta Tags -->
+    <meta name="description" content="Nabila Ahmad Studio Development AI: Platform canggih untuk generasi film drama, animasi, lirik lagu, dan video berbicara otomatis. Unggah ide Anda, biarkan AI kami yang bekerja.">
+    <meta name="keywords" content="AI Film Generator, Produksi Film Otomatis, Generator Animasi, AI Video, Nabila Ahmad, SadTalker, AssemblyAI, MUX, OpenRouter, Studio AI Jakarta">
+    <meta name="author" content="Nabila Ahmad Studio Development AI">
+    <link rel="canonical" href="https://your-vercel-domain.com/">
+    <link rel="icon" href="https://svgshare.com/i/185E.svg" type="image/svg+xml">
+
+    <!-- Open Graph (Facebook, etc.) -->
+    <meta property="og:title" content="Nabila Ahmad Studio - AI Film, Animasi, & Content Generator">
+    <meta property="og:description" content="Revolusi produksi konten kreatif. Ciptakan film, animasi, dan lirik lagu dengan kekuatan AI.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://your-vercel-domain.com/">
+    <meta property="og:image" content="https://i.ibb.co/bF9wZtq/nabila-ahmad-studio-og-image.png"> <!-- Ganti dengan URL gambar Anda -->
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Nabila Ahmad Studio - AI Film, Animasi, & Content Generator">
+    <meta name="twitter:description" content="Revolusi produksi konten kreatif. Ciptakan film, animasi, dan lirik lagu dengan kekuatan AI.">
+    <meta name="twitter:image" content="https://i.ibb.co/bF9wZtq/nabila-ahmad-studio-og-image.png"> <!-- Ganti dengan URL gambar Anda -->
+
+    <!-- Tailwind CSS & Google Fonts -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- MUX Player Script -->
+    <script src="https://cdn.jsdelivr.net/npm/@mux/mux-player"></script>
+
+    <style>
+        :root {
+            --color-primary: #d946ef; /* Fuchsia */
+            --color-secondary: #3b82f6; /* Blue */
+            --color-tertiary: #14b8a6; /* Teal */
+            --glow-primary: rgba(217, 70, 239, 0.6);
+            --glass-bg: rgba(22, 22, 29, 0.5);
+            --glass-border: rgba(255, 255, 255, 0.15);
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #020617; /* Slate 950 */
+            color: #e5e7eb;
+            overflow-x: hidden;
+        }
+        .bg-animated {
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(217, 70, 239, 0.2), transparent 40%),
+                radial-gradient(circle at 80% 90%, rgba(59, 130, 246, 0.2), transparent 40%),
+                radial-gradient(circle at 50% 50%, rgba(20, 184, 166, 0.1), transparent 50%),
+                #020617;
+            background-size: 200% 200%;
+            animation: move-glow 20s infinite alternate;
+        }
+        @keyframes move-glow {
+            from { background-position: 0% 0%; }
+            to { background-position: 100% 100%; }
+        }
+        .font-orbitron { font-family: 'Orbitron', sans-serif; }
+        .text-gradient {
+            background: linear-gradient(90deg, var(--color-primary), var(--color-secondary), var(--color-tertiary));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text; text-fill-color: transparent;
+            animation: gradient-flow 5s ease infinite;
+            background-size: 200% 200%;
+        }
+        @keyframes gradient-flow { 
+            0%{background-position:0% 50%}
+            50%{background-position:100% 50%}
+            100%{background-position:0% 50%}
+        }
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-radius: 1.25rem;
+            transition: all 0.3s ease;
+        }
+        .glass-card:hover {
+            border-color: rgba(255, 255, 255, 0.4);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .btn-glow {
+            transition: all 0.3s ease-in-out;
+        }
+        .btn-glow:hover {
+            box-shadow: 0 0 15px var(--glow-primary), 0 0 30px var(--glow-primary);
+        }
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .marquee {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(5px);
+            color: white;
+            padding: 8px 0;
+            z-index: 1000;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        .marquee-content {
+            display: inline-block;
+            padding-left: 100%;
+            animation: marquee-scroll 45s linear infinite;
+        }
+        @keyframes marquee-scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+        .form-input {
+             width: 100%;
+             padding: 12px;
+             background-color: rgba(2, 6, 23, 0.5);
+             border: 1px solid var(--glass-border);
+             border-radius: 0.5rem;
+             color: #e5e7eb;
+             transition: all 0.3s;
+        }
+        .form-input:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 10px var(--glow-primary);
+        }
+        .status-item {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 0.5rem;
+            margin-bottom: 0.5rem;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.875rem;
+        }
+    </style>
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Nabila Ahmad Studio Development AI",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "Web",
+      "description": "Platform AI canggih untuk generasi otomatis film drama, animasi, lirik lagu, dan konten kreatif lainnya dari naskah atau ide.",
+      "author": {
+        "@type": "Organization",
+        "name": "Nabila Ahmad Studio"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "IDR"
+      }
+    }
+    </script>
+</head>
+
+<body class="bg-animated">
+
+    <!-- MARQUEE NOTIFICATION -->
+    <div class="marquee">
+        <div class="marquee-content">
+            <span class="mx-8">✨ Selamat datang di Nabila Ahmad Studio Development AI ✨</span>
+            <span class="mx-8">Developer: Studio Nabila menerima pembuatan website, blog, platform, dan tools AI</span>
+            <span class="mx-8">Hubungi WhatsApp: 085910526151 untuk pemesanan layanan coding dan website</span>
+            <span class="mx-8">✨ Selamat datang di Nabila Ahmad Studio Development AI ✨</span>
+            <span class="mx-8">Developer: Studio Nabila menerima pembuatan website, blog, platform, dan tools AI</span>
+            <span class="mx-8">Hubungi WhatsApp: 085910526151 untuk pemesanan layanan coding dan website</span>
+        </div>
+    </div>
+
+    <div class="container mx-auto px-6 md:px-12 py-8 mt-16">
+
+        <!-- HERO SECTION -->
+        <section id="hero" class="min-h-screen flex flex-col justify-center items-center text-center fade-in-section is-visible">
+            <h1 class="font-orbitron text-5xl md:text-7xl lg:text-8xl font-black uppercase tracking-widest text-gradient">
+                Nabila Ahmad
+            </h1>
+            <p class="font-orbitron text-lg md:text-2xl font-bold text-gray-300 mt-2">Studio Development AI</p>
+            <p class="max-w-3xl mt-6 text-lg md:text-xl text-gray-400 font-light leading-relaxed">
+                Revolusi produksi film drama dan animasi. Unggah naskah, foto, atau ide Anda, dan biarkan AI kami yang canggih menciptakan konten sinematik berkualitas tinggi secara otomatis.
+            </p>
+            <a href="#tools" class="mt-12 px-10 py-4 font-bold text-white bg-gradient-to-r from-fuchsia-600 to-blue-600 rounded-full text-lg shadow-lg shadow-fuchsia-500/30 transition-all duration-300 hover:shadow-xl hover:shadow-fuchsia-500/50 btn-glow">
+                Jelajahi AI Tools <i class="fas fa-chevron-down ml-2"></i>
+            </a>
+        </section>
+        
+        <!-- NEW AI TOOLS SECTION -->
+        <section id="tools" class="py-20 fade-in-section">
+            <h2 class="text-center font-orbitron text-4xl font-bold mb-16">Jelajahi Tools AI Kami</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                
+                <!-- 1. FILM GENERATOR -->
+                <div class="glass-card p-8 lg:col-span-2">
+                    <div class="flex flex-col md:flex-row items-center gap-8">
+                        <div class="text-center md:text-left md:w-1/3">
+                            <i class="fas fa-film text-6xl text-gradient mb-4"></i>
+                            <h3 class="font-orbitron text-3xl font-bold text-white">Generator Film Drama</h3>
+                            <p class="text-gray-400 mt-2">Ubah naskah Anda menjadi film pendek lengkap dengan suara, visual, dan subtitle. Ditenagai oleh LLMs, PlayHT, RunwayML, dan MUX.</p>
+                        </div>
+                        <form id="film-form" class="w-full md:w-2/3">
+                             <textarea id="film-script-input" class="form-input h-40" placeholder="Contoh:
+SCENE 1
+INT. KAFE - MALAM HARI
+NABILA, seorang seniman, duduk sendirian. AHMAD, seorang arsitek, masuk..."></textarea>
+                            <div class="flex flex-col sm:flex-row items-center justify-between mt-4">
+                                <label for="film-file-upload" class="cursor-pointer text-center w-full sm:w-auto mb-4 sm:mb-0 px-6 py-3 border-2 border-dashed border-gray-500 rounded-lg text-gray-400 hover:border-blue-500 hover:text-blue-400 transition-all duration-300">
+                                    <i class="fas fa-cloud-upload-alt mr-2"></i> Unggah Naskah
+                                    <input id="film-file-upload" type="file" class="hidden">
+                                </label>
+                                <button type="submit" class="btn-glow w-full sm:w-auto px-8 py-3 font-bold text-white bg-gradient-to-r from-fuchsia-600 to-blue-600 rounded-lg">
+                                    <span class="btn-text">Generate Film</span><i class="fas fa-spinner fa-spin ml-2 hidden"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- 2. LYRIC GENERATOR -->
+                <div class="glass-card p-8">
+                     <i class="fas fa-music text-4xl text-teal-400 mb-4"></i>
+                    <h3 class="font-orbitron text-2xl font-bold mb-2">Generator Lirik Lagu</h3>
+                    <p class="text-gray-400 mb-4">Butuh inspirasi lirik? Tulis tema Anda dan biarkan AI menciptakan lirik lagu yang puitis.</p>
+                    <form id="lyric-form">
+                        <input type="text" id="lyric-prompt" class="form-input" placeholder="Contoh: Hujan di senja hari Jakarta">
+                        <button type="submit" class="btn-glow w-full mt-4 px-8 py-3 font-bold text-white bg-gradient-to-r from-teal-500 to-cyan-500 rounded-lg">
+                           <span class="btn-text">Generate Lirik</span><i class="fas fa-spinner fa-spin ml-2 hidden"></i>
+                        </button>
+                    </form>
+                </div>
+                
+                <!-- 3. TALKING PHOTO -->
+                <div class="glass-card p-8">
+                     <i class="fas fa-portrait text-4xl text-fuchsia-400 mb-4"></i>
+                    <h3 class="font-orbitron text-2xl font-bold mb-2">Ubah Foto Jadi Video</h3>
+                    <p class="text-gray-400 mb-4">Hidupkan foto potret! Unggah foto dan ketik teks untuk membuatnya berbicara (simulasi API SadTalker).</p>
+                    <form id="talking-photo-form">
+                        <input type="text" id="talking-text" class="form-input mb-4" placeholder="Teks yang akan diucapkan...">
+                        <div class="flex items-center justify-between">
+                             <label for="photo-upload" class="cursor-pointer text-sm px-4 py-2 border border-gray-500 rounded-lg text-gray-400 hover:border-fuchsia-500 hover:text-fuchsia-400">
+                                <i class="fas fa-image mr-2"></i> Pilih Foto
+                                <input id="photo-upload" type="file" class="hidden" accept="image/*">
+                            </label>
+                            <button type="submit" class="btn-glow px-8 py-3 font-bold text-white bg-gradient-to-r from-fuchsia-500 to-pink-500 rounded-lg">
+                               <span class="btn-text">Animate</span><i class="fas fa-spinner fa-spin ml-2 hidden"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- 4. SUBTITLE GENERATOR -->
+                <div class="glass-card p-8 lg:col-span-2">
+                    <i class="fas fa-closed-captioning text-4xl text-blue-400 mb-4"></i>
+                    <h3 class="font-orbitron text-2xl font-bold mb-2">Subtitle Otomatis</h3>
+                    <p class="text-gray-400 mb-4">Unggah file video Anda (.mp4, .mov) dan biarkan AI kami men-transkrip audio menjadi file subtitle (.srt) secara akurat (simulasi API AssemblyAI/Whisper).</p>
+                    <form id="subtitle-form" class="flex items-center justify-between">
+                         <label for="video-upload" class="cursor-pointer px-6 py-3 border-2 border-dashed border-gray-500 rounded-lg text-gray-400 hover:border-blue-500 hover:text-blue-400 transition-all duration-300">
+                            <i class="fas fa-video mr-2"></i> Unggah Video
+                            <input id="video-upload" type="file" class="hidden" accept="video/*">
+                        </label>
+                        <button type="submit" class="btn-glow px-8 py-3 font-bold text-white bg-gradient-to-r from-blue-500 to-indigo-500 rounded-lg">
+                           <span class="btn-text">Generate Subtitle</span><i class="fas fa-spinner fa-spin ml-2 hidden"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+        
+        <!-- STATUS & RESULT AREA -->
+        <section id="result-area" class="py-10 fade-in-section hidden">
+            <div class="glass-card max-w-4xl mx-auto p-8">
+                <h2 id="result-title" class="text-center font-orbitron text-3xl font-bold mb-6">Status Proses...</h2>
+                <div id="status-list" class="space-y-2 mb-6"></div>
+                <pre id="result-text" class="w-full h-auto max-h-64 p-4 bg-black/30 border border-white/10 rounded-lg overflow-y-auto whitespace-pre-wrap font-mono text-sm hidden"></pre>
+                <div id="video-preview" class="hidden">
+                    <mux-player stream-type="on-demand" playback-id="23s11aAKs02aYyG02d02c1a01uF01dO01aNn01n1bOAdvO019j5k8i" metadata-video-title="Test Video" metadata-viewer-user-id="user-123"></mux-player>
+                    <p class="text-center text-sm text-gray-400 mt-4">Video di-streaming via MUX dengan subtitle terintegrasi.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- REVIEW SECTION -->
+        <section id="review" class="py-20 text-center fade-in-section">
+             <div class="glass-card max-w-2xl mx-auto p-10">
+                <i class="fas fa-star-half-alt text-5xl text-yellow-400 mb-4"></i>
+                <h2 class="font-orbitron text-3xl font-bold mb-4">Suka dengan Platform Ini?</h2>
+                <p class="text-gray-300 mb-8">Kami membangun platform ini dengan penuh cinta. Ulasan Anda sangat berarti untuk membantu kami berkembang dan menjangkau lebih banyak kreator seperti Anda.</p>
+                <a href="https://wa.me/6285910526151?text=Halo%20Nabila%20Studio,%20saya%20ingin%20memberikan%20ulasan%20tentang%20platform%20AI%20Anda..." target="_blank" class="btn-glow px-8 py-3 font-bold text-white bg-gradient-to-r from-green-500 to-teal-500 rounded-lg">
+                    <i class="fab fa-whatsapp mr-2"></i> Beri Ulasan via WhatsApp
+                </a>
+             </div>
+        </section>
+
+        <!-- MAPS SECTION -->
+        <section id="location" class="py-20 fade-in-section">
+            <h2 class="text-center font-orbitron text-4xl font-bold mb-12">Lokasi Studio Kami</h2>
+            <div class="glass-card p-2">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3967.070081449339!2d106.72691587474932!3d-6.120755393863484!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6a5f5439c27809%3A0xb3574b5b0351817!2sJl.%20Jaya%20Raya%2C%20RT.5%2FRW.9%2C%20Cengkareng%20Bar.%2C%20Kecamatan%20Cengkareng%2C%20Kota%20Jakarta%20Barat%2C%20Daerah%20Khusus%20Ibukota%20Jakarta%2011730!5e0!3m2!1sid!2sid!4v1709995130761!5m2!1sid!2sid" width="100%" height="450" style="border:0; border-radius: 1rem;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="text-center py-8 mt-16 border-t border-white/10 fade-in-section">
+            <p class="text-gray-500">&copy; 2024 Nabila Ahmad Studio Development AI. All Rights Reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // --- Scroll Animation Logic ---
+        const sections = document.querySelectorAll('.fade-in-section');
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        sections.forEach(section => observer.observe(section));
+
+        const resultArea = document.getElementById('result-area');
+        const resultTitle = document.getElementById('result-title');
+        const statusList = document.getElementById('status-list');
+        const resultText = document.getElementById('result-text');
+        const videoPreview = document.getElementById('video-preview');
+        
+        // Helper to handle button state
+        const setButtonLoading = (form, isLoading) => {
+            const button = form.querySelector('button[type="submit"]');
+            const btnText = button.querySelector('.btn-text');
+            const spinner = button.querySelector('.fa-spinner');
+            if (isLoading) {
+                button.disabled = true;
+                btnText.style.display = 'none';
+                spinner.classList.remove('hidden');
+            } else {
+                button.disabled = false;
+                btnText.style.display = 'inline';
+                spinner.classList.add('hidden');
+            }
+        };
+        
+        // Helper to display status updates
+        const showStatus = (title) => {
+            resultArea.classList.remove('hidden');
+            resultTitle.textContent = title;
+            statusList.innerHTML = '';
+            resultText.classList.add('hidden');
+            videoPreview.classList.add('hidden');
+            resultArea.scrollIntoView({ behavior: 'smooth' });
+        };
+        
+        let statusInterval;
+        const addStatusStep = (text, delay) => {
+            return new Promise(resolve => {
+                setTimeout(() => {
+                    const li = document.createElement('li');
+                    li.className = 'status-item';
+                    li.innerHTML = `<i class="fas fa-spinner fa-spin text-blue-400 mr-3"></i> ${text}`;
+                    statusList.appendChild(li);
+                    statusList.scrollTop = statusList.scrollHeight;
+                    
+                    setTimeout(() => {
+                        li.querySelector('i').className = 'fas fa-check-circle text-teal-400 mr-3';
+                        resolve();
+                    }, 800);
+                }, delay);
+            });
+        };
+
+        // --- 1. Film Generator Logic ---
+        document.getElementById('film-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const form = e.target;
+            const scriptInput = document.getElementById('film-script-input');
+            const naskah = scriptInput.value.trim();
+
+            if (!naskah) {
+                alert('Naskah film tidak boleh kosong!');
+                return;
+            }
+
+            setButtonLoading(form, true);
+            showStatus('Memproses Film Anda...');
+            
+            await addStatusStep("Menganalisis naskah...", 0);
+            
+            try {
+                const response = await fetch('/api/generate_film', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ prompt_type: 'film', naskah: naskah })
+                });
+
+                if (!response.ok) throw new Error(`API Error: ${response.statusText}`);
+                const data = await response.json();
+                
+                await addStatusStep(`Naskah dikembangkan oleh AI: ${data.model}`, 100);
+                resultText.textContent = data.dialog;
+                resultText.classList.remove('hidden');
+
+            } catch(error) {
+                console.error("Film generation error:", error);
+                await addStatusStep(`Error: ${error.message}`, 100);
+                resultText.textContent = `Gagal menghubungi AI. Pastikan API Key sudah benar. \nDetail: ${error.message}`;
+                resultText.classList.remove('hidden');
+                setButtonLoading(form, false);
+                return;
+            }
+            
+            await addStatusStep("Generate suara & subtitle...", 500);
+            await addStatusStep("Render visual (RunwayML)...", 1000);
+            await addStatusStep("Finalisasi & unggah ke MUX...", 1500);
+
+            resultTitle.textContent = "Film Anda Siap!";
+            videoPreview.classList.remove('hidden');
+            videoPreview.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            setButtonLoading(form, false);
+        });
+
+        // --- 2. Lyric Generator Logic ---
+        document.getElementById('lyric-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const form = e.target;
+            const promptInput = document.getElementById('lyric-prompt');
+            const tema = promptInput.value.trim();
+
+            if (!tema) {
+                alert('Tema lirik tidak boleh kosong!');
+                return;
+            }
+
+            setButtonLoading(form, true);
+            showStatus('Menciptakan Lirik Lagu...');
+            await addStatusStep("Mengirim tema ke AI...", 0);
+
+            try {
+                const response = await fetch('/api/generate_film', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ prompt_type: 'lirik', naskah: tema })
+                });
+
+                if (!response.ok) throw new Error(`API Error: ${response.statusText}`);
+                const data = await response.json();
+
+                await addStatusStep(`Lirik dibuat oleh AI: ${data.model}`, 100);
+                resultTitle.textContent = `Lirik Lagu: "${tema}"`;
+                resultText.textContent = data.dialog;
+                resultText.classList.remove('hidden');
+
+            } catch (error) {
+                console.error("Lyric generation error:", error);
+                await addStatusStep(`Error: ${error.message}`, 100);
+                resultText.textContent = `Gagal menghubungi AI. Pastikan API Key sudah benar. \nDetail: ${error.message}`;
+                resultText.classList.remove('hidden');
+            } finally {
+                setButtonLoading(form, false);
+            }
+        });
+
+        // --- 3. Talking Photo Simulation ---
+        document.getElementById('talking-photo-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const form = e.target;
+            if (!document.getElementById('photo-upload').files.length || !document.getElementById('talking-text').value) {
+                alert('Mohon unggah foto dan isi teks yang akan diucapkan.');
+                return;
+            }
+            setButtonLoading(form, true);
+            showStatus('Menghidupkan Foto...');
+            await addStatusStep("Mendeteksi wajah...", 0);
+            await addStatusStep("Generate audio dari teks...", 1000);
+            await addStatusStep("Sinkronisasi gerakan bibir (SadTalker API)...", 1500);
+            await addStatusStep("Render video final...", 2000);
+            resultTitle.textContent = "Video Berbicara Selesai!";
+            resultText.textContent = "Simulasi Selesai. Di aplikasi nyata, video akan muncul di sini.";
+            resultText.classList.remove('hidden');
+            setButtonLoading(form, false);
+        });
+
+        // --- 4. Subtitle Generator Simulation ---
+        document.getElementById('subtitle-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const form = e.target;
+            if (!document.getElementById('video-upload').files.length) {
+                alert('Mohon unggah file video.');
+                return;
+            }
+            setButtonLoading(form, true);
+            showStatus('Membuat Subtitle Otomatis...');
+            await addStatusStep("Mengunggah video ke server...", 0);
+            await addStatusStep("Memproses audio (AssemblyAI API)...", 1500);
+            await addStatusStep("Membuat stempel waktu...", 1000);
+            await addStatusStep("Menghasilkan file .srt...", 500);
+            resultTitle.textContent = "Subtitle Berhasil Dibuat!";
+            resultText.textContent = `Simulasi Selesai. File subtitle.srt akan otomatis terunduh.
+--- CONTOH HASIL ---
+1
+00:00:01,234 --> 00:00:04,567
+Halo, ini adalah contoh subtitle
+yang dihasilkan secara otomatis.
+
+2
+00:00:05,123 --> 00:00:07,890
+Sistem akan mendeteksi setiap kata.`;
+            resultText.classList.remove('hidden');
+            setButtonLoading(form, false);
+        });
+    });
+    </script>
+</body>
+</html>
